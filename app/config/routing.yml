@@ -1,3 +1,8 @@
+exam:
+    resource: "@ExamBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 principal:
     resource: "@PrincipalBundle/Controller/"
     type:     annotation

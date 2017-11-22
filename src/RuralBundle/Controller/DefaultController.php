@@ -17,28 +17,29 @@ class DefaultController extends Controller
   }
 
   /**
-   * @Route("/alojamiento", name="alojamiento")
+   * @Route("/comarca", name="comarca")
    */
-  public function alojamientoAction()
+  public function comarcaAction()
   {
+    /* APARTADO 1 */
       $repository = $this->getDoctrine()->getRepository('RuralBundle:Alojamiento');
-      $alojamiento = $repository->findAll();
+      $alojamiento = $repository->findByPrecio_aprox(25);
 
-      return $this->render('RuralBundle:Default:alojamiento.html.twig',array("alojamientos"=>$alojamiento));
+      return $this->render('RuralBundle:Default:comarca.html.twig',array("alojamientos"=>$alojamiento));
   }
 
-  /*
-  --- 1.Filtrado por campos ---
-  $repository = $this->getDoctrine()->getRepository('RuralBundle:Alojamiento');
-  $alojamiento = $repository->find(1);
+  /**
+   * @Route("/mostrar/{nom}", name="mostrar_producto")
+   */
+  public function unicoAction($nom)
+  {
+      /* APARTADO 2 */
+      $repository = $this->getDoctrine()->getRepository('RuralBundle:Alojamiento');
+      $alojamiento = $repository->findByNom_alojamiento($nom);
 
-  return $this->render('RuralBundle:Default:alojamiento.html.twig',array("id"=>$alojamiento->getId(),"nombre"=>$alojamiento->getNomAlojamiento()));
+      return $this->render('RuralBundle:Default:comarca.html.twig',array("alojamientos"=>$alojamiento));
+  }
 
-  --- 2.Filtrado por campos2 ---
-  $repository = $this->getDoctrine()->getRepository('RuralBundle:Alojamiento');
-  $alojamiento = $repository->find(1);
 
-  return $this->render('RuralBundle:Default:alojamiento.html.twig',array("aloj"=>$alojamiento));
-  */
 
 }
